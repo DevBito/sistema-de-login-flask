@@ -1,0 +1,8 @@
+Flask
+bcrypt
+PyJWT
+flask-sqlalchemy
+werkzeug
+pyotp
+flask-cors
+qrcode

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Configurar Autenticação de Dois Fatores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Configurar Autenticação de Dois Fatores</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+              {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <p>Escaneie o QR Code abaixo com seu aplicativo autenticador:</p>
+        <img src="{{ qr_url }}" alt="QR Code MFA">
+        <p>Após escanear, insira o código gerado:</p>
+        <form method="POST" action="/mfa_setup">
+             <label for="code">Código de Autenticação:</label>
+             <input type="text" id="code" name="code" required>
+             <button type="submit">Ativar MFA</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Voltar</a></p>
+    </div>
+</body>
+</html>
